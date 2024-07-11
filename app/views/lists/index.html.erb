@@ -2,3 +2,5 @@
 <% @lists.each do |list| %>
  <p><%= list.name %></p>
 <% end %>
+
+<%= link_to 'Add New List', new_list_path, class: "nav-link" %>
