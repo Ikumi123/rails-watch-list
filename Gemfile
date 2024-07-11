@@ -70,3 +70,7 @@ gem "sassc-rails"
 gem 'rspec-rails', group: [ :test ]
 gem 'rails-controller-testing', group: [ :test ]
 gem 'dotenv-rails', groups: [:development, :test]
+gem "cloudinary"
+gem "faker"
+gem "open-uri"
+gem "json"

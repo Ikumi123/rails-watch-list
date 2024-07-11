@@ -4,7 +4,13 @@ class ListsController < ApplicationController
   end
 
   def show
-    @List = List.find(params[:id])
+    @list = List.find(params[:id])
+    @review = Review.new
+    @reviews = @list.reviews.order(created_at: :desc)
+    @bookmarks = @list.bookmarks
+    @bookmark = Bookmark.new
+    @available_movies = Movie.where.not(id: @list.movies.pluck(:id))
+    @movies = @list.movies
   end
 
   def new
@@ -25,6 +31,6 @@ class ListsController < ApplicationController
 
   private
   def list_params
-    params.require(:list).permit(:name)
+    params.require(:list).permit(:name, :photo)
   end
 end

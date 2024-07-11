@@ -1,1 +1,39 @@
-<%= EJFOIE  %>
+<%= @list.name %>
+
+<%= simple_form_for [@list, @review] do |f|%>
+<%= f.input :content %>
+<%= f.input :rating %>
+<%= f.submit %>
+<% end %>
+
+<div class= "container">
+<% @reviews.each do |review| %>
+<%= review.content %>
+<% end %>
+</div>
+
+<%= simple_form_for [@list, @list.bookmarks.build] do |f| %>
+    <%= f.input :movie_id,
+                collection: @available_movies.collect { |movie| [movie.title, movie.id] },
+                prompt: "Select a movie",
+                label: "Movie",
+                input_html: { class: "input-list" } %>
+    <%= f.input :comment,
+                input_html: { class: "input-list" } %>
+    <%= f.submit "Add Bookmark", class: "btn-primary" %>
+  <% end %>
+
+<div class = "container">
+<ul>
+  <% @bookmarks.each do |bookmark| %>
+    <li>
+      <% if bookmark.movie %>
+        <%= bookmark.movie.title %>
+      <% else %>
+        Movie Not Found
+      <% end %>
+      <%= bookmark.comment %>
+    </li>
+  <% end %>
+</ul>
+</div>
